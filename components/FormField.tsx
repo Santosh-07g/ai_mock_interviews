@@ -1,7 +1,6 @@
 import React from 'react'
-import {FormControl, FormDescription, FormItem, FormLabel,
-  FormMessage} from "@/components/ui/form";
-  import {Input} from "@/components/ui/input";
+import { FormControl, FormItem, FormLabel, FormMessage,} from "@/components/ui/form";
+import {Input} from "@/components/ui/input";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 
 interface FormFieldProps<T extends FieldValues> {
@@ -12,8 +11,14 @@ interface FormFieldProps<T extends FieldValues> {
   type?: 'text' | 'email' | 'password' | 'file';
 }
 
-
-const FormField = ({ control, name, label, placeholder, type ="text"}: FormFieldProps<T>) => (
+// Add the generic type parameter <T extends FieldValues> here
+const FormField = <T extends FieldValues>({ 
+  control, 
+  name, 
+  label, 
+  placeholder, 
+  type = "text"
+}: FormFieldProps<T>) => (
   <Controller
     name={name}
     control={control}
@@ -22,11 +27,11 @@ const FormField = ({ control, name, label, placeholder, type ="text"}: FormField
         <FormLabel className="label">{label}</FormLabel>
         <FormControl>
           <Input 
-          className="input"
-           placeholder={placeholder} 
-           type={type}
-           {...field} 
-           />
+            className="input"
+            placeholder={placeholder} 
+            type={type}
+            {...field} 
+          />
         </FormControl>
         <FormMessage />
       </FormItem>
@@ -34,6 +39,4 @@ const FormField = ({ control, name, label, placeholder, type ="text"}: FormField
   />
 );
 
-
-
-export default FormField
+export default FormField;
