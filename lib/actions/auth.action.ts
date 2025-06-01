@@ -2,9 +2,11 @@
 
 import { auth, db } from "@/firebase/admin";
 import { cookies } from "next/headers";
+import { signInWithPopup } from "firebase/auth";
 
 
 const ONE_WEEK = 60 * 60 * 24 * 7;
+
 
 
 export async function signUp(params: SignUpParams){
@@ -112,3 +114,4 @@ export async function isAuthenticated() {
     const user = await getCurrentUser();
     return !!user;
 }
+
